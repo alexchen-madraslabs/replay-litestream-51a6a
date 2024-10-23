@@ -287,7 +287,6 @@ type DBConfig struct {
 	MetaPath           *string        `yaml:"meta-path"`
 	MonitorInterval    *time.Duration `yaml:"monitor-interval"`
 	CheckpointInterval *time.Duration `yaml:"checkpoint-interval"`
-	BusyTimeout        *time.Duration `yaml:"busy-timeout"`
 	MinCheckpointPageN *int           `yaml:"min-checkpoint-page-count"`
 	MaxCheckpointPageN *int           `yaml:"max-checkpoint-page-count"`
 
@@ -313,9 +312,6 @@ func NewDBFromConfig(dbc *DBConfig) (*litestream.DB, error) {
 	}
 	if dbc.CheckpointInterval != nil {
 		db.CheckpointInterval = *dbc.CheckpointInterval
-	}
-	if dbc.BusyTimeout != nil {
-		db.BusyTimeout = *dbc.BusyTimeout
 	}
 	if dbc.MinCheckpointPageN != nil {
 		db.MinCheckpointPageN = *dbc.MinCheckpointPageN
